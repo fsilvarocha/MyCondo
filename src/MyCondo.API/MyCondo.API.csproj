@@ -25,10 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MyCondo.Application\MyCondo.Application.csproj" />
     <ProjectReference Include="..\MyCondo.IoC\MyCondo.IoC.csproj" />
   </ItemGroup>

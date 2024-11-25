@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MyCondo.Domain.Transfer\MyCondo.Domain.Transfer.csproj" />
+  </ItemGroup>
+
 </Project>
