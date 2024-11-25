@@ -13,15 +13,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infra", "4 - Infra", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - CrossCutting", "5 - CrossCutting", "{DD97A4E2-4015-4714-908E-F2E3407A99A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCondo.IoC", "src\MyCondo.IoC\MyCondo.IoC.csproj", "{855240BD-DEE7-4CC1-BCC3-80B3A67305CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCondo.IoC", "src\MyCondo.IoC\MyCondo.IoC.csproj", "{855240BD-DEE7-4CC1-BCC3-80B3A67305CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCondo.Infra", "src\MyCondo.Infra\MyCondo.Infra.csproj", "{76E43F05-57B8-4537-ADEE-E3FF41A640F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCondo.Infra", "src\MyCondo.Infra\MyCondo.Infra.csproj", "{76E43F05-57B8-4537-ADEE-E3FF41A640F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCondo.Domain", "src\MyCondo.Domain\MyCondo.Domain.csproj", "{8CBD7AFE-3780-40A6-8252-5959A77138A8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCondo.Domain", "src\MyCondo.Domain\MyCondo.Domain.csproj", "{8CBD7AFE-3780-40A6-8252-5959A77138A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCondo.Application", "src\MyCondo.Application\MyCondo.Application.csproj", "{A0BA4372-EC06-46D5-BF02-9D11EEAD000E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCondo.Application", "src\MyCondo.Application\MyCondo.Application.csproj", "{A0BA4372-EC06-46D5-BF02-9D11EEAD000E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCondo.API", "src\MyCondo.API\MyCondo.API.csproj", "{D08BFDEF-8A89-47A7-83DF-9B14D0AB70B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCondo.API", "src\MyCondo.API\MyCondo.API.csproj", "{D08BFDEF-8A89-47A7-83DF-9B14D0AB70B9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCondo.Domain.Transfer", "src\MyCondo.Domain.Transfer\MyCondo.Domain.Transfer.csproj", "{367CB2A8-24C7-4493-8782-0E2A6D3CBFED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +51,10 @@ Global
 		{D08BFDEF-8A89-47A7-83DF-9B14D0AB70B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D08BFDEF-8A89-47A7-83DF-9B14D0AB70B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D08BFDEF-8A89-47A7-83DF-9B14D0AB70B9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{367CB2A8-24C7-4493-8782-0E2A6D3CBFED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{367CB2A8-24C7-4493-8782-0E2A6D3CBFED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{367CB2A8-24C7-4493-8782-0E2A6D3CBFED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{367CB2A8-24C7-4493-8782-0E2A6D3CBFED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +65,7 @@ Global
 		{8CBD7AFE-3780-40A6-8252-5959A77138A8} = {B3333937-1ABE-497A-B94E-C8E894269F9E}
 		{A0BA4372-EC06-46D5-BF02-9D11EEAD000E} = {EA7CCC62-E99E-464B-82E2-52F2639FB98B}
 		{D08BFDEF-8A89-47A7-83DF-9B14D0AB70B9} = {51CC7264-650B-4359-A685-157B1706D218}
+		{367CB2A8-24C7-4493-8782-0E2A6D3CBFED} = {B3333937-1ABE-497A-B94E-C8E894269F9E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7261B553-EB2D-4219-9089-0F27B85C2B60}
