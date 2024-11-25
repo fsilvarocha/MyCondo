@@ -13,6 +13,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\MyCondo.Application\MyCondo.Application.csproj" />
+    <ProjectReference Include="..\MyCondo.Domain.Transfer\MyCondo.Domain.Transfer.csproj" />
+    <ProjectReference Include="..\MyCondo.Domain\MyCondo.Domain.csproj" />
     <ProjectReference Include="..\MyCondo.Infra\MyCondo.Infra.csproj" />
   </ItemGroup>
 
