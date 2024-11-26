@@ -12,5 +12,6 @@ public class CondominiosProfile : Profile
         CreateMap<Condominios, CondominiosResponse>().ReverseMap();
         CreateMap<Condominios, CondominiosInserirRequest>().ReverseMap();
         CreateMap<Condominios, CondominiosPesquisaRequest>().ReverseMap();
+        CreateMap<Condominios, CondominiosAtualizarRequest>().ReverseMap();
     }
 }

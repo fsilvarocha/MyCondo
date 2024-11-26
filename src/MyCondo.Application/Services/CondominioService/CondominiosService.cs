@@ -40,4 +40,61 @@ public class CondominiosService : ICondominiosService
         CondominiosResponse retorno = _mapper.Map<CondominiosResponse>(condominio);
         return retorno;
     }
+
+    public async Task UpdateAsync(int id, Guid tenante, CondominiosAtualizarRequest entity)
+    {
+        CondominiosPesquisaRequest requestPesquisa = ParsePesquisa(id, tenante);
+
+        Condominios pesquisa = _mapper.Map<Condominios>(requestPesquisa);
+
+        Condominios existingProdutos = await _condominiosRepository.GetByIdTenanteAsync(pesquisa);
+
+        if (existingProdutos == null)
+            return;
+
+        SetarCondominioNovo(entity, existingProdutos);
+
+        await _condominiosRepository.UpdateAsync(existingProdutos);
+    }
+
+    public async Task DeleteAsync(int id, Guid tenante)
+    {
+        CondominiosPesquisaRequest requestPesquisa = ParsePesquisa(id, tenante);
+
+        Condominios pesquisa = _mapper.Map<Condominios>(requestPesquisa);
+
+        Condominios existingProdutos = await _condominiosRepository.GetByIdTenanteAsync(pesquisa);
+
+        if (existingProdutos == null)
+            return;
+
+        
+
+        await _condominiosRepository.DeleteAsync(existingProdutos);
+    }
+
+    private static void SetarCondominioNovo(CondominiosAtualizarRequest entity, Condominios existingProdutos)
+    {
+        existingProdutos.SetNome(entity.Nome);
+        existingProdutos.SetCnpj(entity.Cnpj);
+        existingProdutos.SetTipoCondominio(entity.TipoCondominio);
+        existingProdutos.SetLogo(entity.Logo);
+        existingProdutos.SetCep(entity.Cep);
+        existingProdutos.SetCidade(entity.Cidade);
+        existingProdutos.SetUf(entity.Uf);
+        existingProdutos.SetBairro(entity.Bairro);
+        existingProdutos.SetLogradouro(entity.Logradouro);
+        existingProdutos.SetNumero(entity.Numero);
+        existingProdutos.SetComplemento(entity.Complemento);
+        existingProdutos.SetDataAtualizado(DateTime.Now);
+    }
+
+    private static CondominiosPesquisaRequest ParsePesquisa(int id, Guid tenante)
+    {
+        return new()
+        {
+            Id = id,
+            Tenante = tenante,
+        };
+    }
 }

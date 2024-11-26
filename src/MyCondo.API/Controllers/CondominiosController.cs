@@ -62,5 +62,33 @@ namespace MyCondo.API.Controllers
 
             return Ok(retorno);
         }
+
+        /// <summary>
+        /// Atualiza um Condomínio já previamente cadastrado
+        /// </summary>
+        /// <param name="Condominio"></param>
+        /// <returns></returns>
+        [HttpPut("atualizar")]
+        public async Task<IActionResult> Update(int Id, Guid Tenante, [FromBody] CondominiosAtualizarRequest entity)
+        {
+            if (string.IsNullOrEmpty(entity.Nome))
+                return BadRequest();
+
+            await _condominioService.UpdateAsync(Id, Tenante, entity);
+            return NoContent();
+        }
+
+        /// <summary>
+        /// Delete um Condominio cadastrado
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="tenante"></param>
+        /// <returns></returns>
+        [HttpDelete("deletar")]
+        public async Task<IActionResult> Delete(int id, Guid tenante)
+        {
+            await _condominioService.DeleteAsync(id, tenante);
+            return NoContent();
+        }
     }
 }

@@ -8,4 +8,6 @@ public interface ICondominiosService
     Task<IEnumerable<CondominiosResponse>> GetAllAsync();
     Task<CondominiosResponse> AddAsync(CondominiosInserirRequest entity);
     Task<CondominiosResponse> GetByIdTenanteAsync(CondominiosPesquisaRequest entity);
+    Task UpdateAsync(int id, Guid tenante,CondominiosAtualizarRequest entity);
+    Task DeleteAsync(int id, Guid tenante);
 }

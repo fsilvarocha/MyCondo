@@ -33,17 +33,37 @@ public class BaseRepository<T> : IBaseRepository<T> where T : class
 
     public async Task<T?> GetByIdTenanteAsync(T entity)
     {
-        string tenante = entity.GetType().GetProperty("Tenante")?.GetValue(entity)?.ToString();
-        int id = (int)entity.GetType().GetProperty("Id")?.GetValue(entity);
+        // Obtém os valores de "Tenante" e "Id" dinamicamente
+        var tenanteProperty = entity.GetType().GetProperty("Tenante");
+        var idProperty = entity.GetType().GetProperty("Id");
 
+        if (tenanteProperty == null || idProperty == null)
+            throw new InvalidOperationException("A entidade fornecida não possui as propriedades esperadas: 'Tenante' ou 'Id'.");
+
+        // Obtém os valores de Tenante e Id
+        string tenante = tenanteProperty.GetValue(entity)?.ToString();
+        int id = (int)idProperty.GetValue(entity);
+
+        // Verifica valores nulos ou inválidos
         if (string.IsNullOrEmpty(tenante))
             return null;
 
-        T retorno = await _dbSet.FirstOrDefaultAsync(x =>
-            EF.Property<string>(x, "Tenante").Equals(tenante, StringComparison.CurrentCultureIgnoreCase) && EF.Property<int>(x, "Id") == id);
+        try
+        {
+            var retorno = await _dbSet.FirstOrDefaultAsync(x =>
+                EF.Property<string>(x, "Tenante").ToLower() == tenante.ToString().ToLower() &&
+                EF.Property<int>(x, "Id") == id);
 
-        return retorno;
+            return retorno;
+        }
+        catch (Exception ex)
+        {
+            // Logar o erro, se necessário
+            throw new InvalidOperationException("Erro ao executar a consulta no banco de dados.", ex);
+        }
     }
+
+
 
     public async Task UpdateAsync(T entity)
     {

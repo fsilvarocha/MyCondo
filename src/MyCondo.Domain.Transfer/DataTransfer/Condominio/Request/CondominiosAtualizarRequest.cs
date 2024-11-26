@@ -1,9 +1,9 @@
 ﻿using MyCondo.Domain.Transfer.DataTransfer.Base;
 using MyCondo.Domain.Utils.Enumeradores;
 
-namespace MyCondo.Domain.Transfer.DataTransfer.Condominio.Response;
+namespace MyCondo.Domain.Transfer.DataTransfer.Condominio.Request;
 
-public class CondominiosResponse : BaseResponse
+public class CondominiosAtualizarRequest
 {
     public virtual string Nome { get; set; }
     public virtual string Cnpj { get; set; }
