@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MyCondo.Infra.Data;
 
@@ -10,53 +11,14 @@ using MyCondo.Infra.Data;
 namespace MyCondo.API.Migrations
 {
     [DbContext(typeof(MyCondoContext))]
-    partial class MyCondoContextModelSnapshot : ModelSnapshot
+    [Migration("20241126181930_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.0");
-
-            modelBuilder.Entity("MyCondo.Domain.Entities.Apartamento.Apartamentos", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Andar")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(1);
-
-                    b.Property<int>("BlocosId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<DateTime?>("DataAtualizado")
-                        .HasColumnType("Date");
-
-                    b.Property<DateTime>("DataCriacao")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("Date")
-                        .HasDefaultValue(new DateTime(2024, 11, 27, 14, 38, 4, 681, DateTimeKind.Local).AddTicks(1751));
-
-                    b.Property<string>("Numero")
-                        .IsRequired()
-                        .HasColumnType("varchar(20)");
-
-                    b.Property<Guid>("Tenante")
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("TipoApartamento")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasDefaultValue(1);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BlocosId");
-
-                    b.ToTable("Apartamentos", (string)null);
-                });
 
             modelBuilder.Entity("MyCondo.Domain.Entities.Bloco.Blocos", b =>
                 {
@@ -73,7 +35,7 @@ namespace MyCondo.API.Migrations
                     b.Property<DateTime>("DataCriacao")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("Date")
-                        .HasDefaultValue(new DateTime(2024, 11, 27, 14, 38, 4, 686, DateTimeKind.Local).AddTicks(9060));
+                        .HasDefaultValue(new DateTime(2024, 11, 26, 15, 19, 30, 267, DateTimeKind.Local).AddTicks(2728));
 
                     b.Property<string>("Nome")
                         .IsRequired()
@@ -126,7 +88,7 @@ namespace MyCondo.API.Migrations
                     b.Property<DateTime>("DataCriacao")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("Date")
-                        .HasDefaultValue(new DateTime(2024, 11, 27, 14, 38, 4, 688, DateTimeKind.Local).AddTicks(9554));
+                        .HasDefaultValue(new DateTime(2024, 11, 26, 15, 19, 30, 275, DateTimeKind.Local).AddTicks(1973));
 
                     b.Property<string>("Logo")
                         .HasColumnType("varchar(500)");
@@ -155,17 +117,6 @@ namespace MyCondo.API.Migrations
                     b.ToTable("Condominios", (string)null);
                 });
 
-            modelBuilder.Entity("MyCondo.Domain.Entities.Apartamento.Apartamentos", b =>
-                {
-                    b.HasOne("MyCondo.Domain.Entities.Bloco.Blocos", "Blocos")
-                        .WithMany("Apartamentos")
-                        .HasForeignKey("BlocosId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Blocos");
-                });
-
             modelBuilder.Entity("MyCondo.Domain.Entities.Bloco.Blocos", b =>
                 {
                     b.HasOne("MyCondo.Domain.Entities.Condominio.Condominios", "Condominios")
@@ -175,11 +126,6 @@ namespace MyCondo.API.Migrations
                         .IsRequired();
 
                     b.Navigation("Condominios");
-                });
-
-            modelBuilder.Entity("MyCondo.Domain.Entities.Bloco.Blocos", b =>
-                {
-                    b.Navigation("Apartamentos");
                 });
 
             modelBuilder.Entity("MyCondo.Domain.Entities.Condominio.Condominios", b =>

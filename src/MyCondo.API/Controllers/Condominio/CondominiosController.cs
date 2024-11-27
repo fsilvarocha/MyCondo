@@ -3,7 +3,7 @@ using MyCondo.Application.Services.CondominioService.Interface;
 using MyCondo.Domain.Transfer.DataTransfer.Condominio.Request;
 using MyCondo.Domain.Transfer.DataTransfer.Condominio.Response;
 
-namespace MyCondo.API.Controllers
+namespace MyCondo.API.Controllers.Condominio
 {
     [ApiController]
     [Route("api/[controller]")]

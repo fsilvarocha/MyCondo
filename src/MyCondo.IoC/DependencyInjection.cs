@@ -3,14 +3,26 @@ using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MyCondo.Application.Services.ApartamentoService;
+using MyCondo.Application.Services.ApartamentoService.Interface;
+using MyCondo.Application.Services.BlocoService;
+using MyCondo.Application.Services.BlocoService.Interface;
 using MyCondo.Application.Services.CondominioService;
 using MyCondo.Application.Services.CondominioService.Interface;
+using MyCondo.Domain.Interface.Apartamento;
 using MyCondo.Domain.Interface.Base;
+using MyCondo.Domain.Interface.Bloco;
 using MyCondo.Domain.Interface.Condominio;
+using MyCondo.Domain.Transfer.DataTransfer.Apartamento.Profiles;
+using MyCondo.Domain.Transfer.DataTransfer.Bloco.Profiles;
 using MyCondo.Domain.Transfer.DataTransfer.Condominio.Profiles;
 using MyCondo.Infra.Data;
+using MyCondo.Infra.Mappings.Apartamento.Validator;
+using MyCondo.Infra.Mappings.Bloco.Validator;
 using MyCondo.Infra.Mappings.Condominio.Validator;
+using MyCondo.Infra.Repositories.Apartamento;
 using MyCondo.Infra.Repositories.Base;
+using MyCondo.Infra.Repositories.Bloco;
 using MyCondo.Infra.Repositories.Condominio;
 
 namespace MyCondo.IoC;
@@ -36,22 +48,30 @@ public static class DependencyInjection
 
     private static void ConfigurarAutoMapper(IServiceCollection services)
     {
-          services.AddAutoMapper(typeof(CondominiosProfile));
+        services.AddAutoMapper(typeof(CondominiosProfile));
+        services.AddAutoMapper(typeof(BlocosProfile));
+        services.AddAutoMapper(typeof(ApartamentoProfile));
     }
 
     private static void ConfiguraServices(IServiceCollection services)
     {
         services.AddScoped<ICondominiosService, CondominiosService>();
+        services.AddScoped<IBlocosService, BlocosService>();
+        services.AddScoped<IApartamentosService, ApartamentosService>();
     }
 
     private static void ConfiguraRepositories(IServiceCollection services)
     {
         services.AddScoped<ICondominiosRepository, CondominiosRepository>();
+        services.AddScoped<IBlocosRepository, BlocoRepository>();
+        services.AddScoped<IApartamentosRepository, ApartamentosRepository>();
     }
 
     private static void ConfiguraFLuentValidation(IServiceCollection services)
     {
         services.AddFluentValidationAutoValidation();
         services.AddValidatorsFromAssemblyContaining<CondominiosValidator>();
+        services.AddValidatorsFromAssemblyContaining<BlocosValidator>();
+        services.AddValidatorsFromAssemblyContaining<ApartamentosValidator>();
     }
 }

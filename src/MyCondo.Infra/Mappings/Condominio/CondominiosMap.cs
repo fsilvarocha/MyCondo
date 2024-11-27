@@ -12,6 +12,8 @@ public class CondominiosMap : IEntityTypeConfiguration<Condominios>
 
         builder.HasKey(x => x.Id);
 
+        builder.Property(p => p.Id).ValueGeneratedOnAdd();
+
         builder.Property(p => p.Nome)
             .IsRequired()
             .HasColumnType("varchar(150)");
@@ -58,5 +60,8 @@ public class CondominiosMap : IEntityTypeConfiguration<Condominios>
 
         builder.Property(p => p.Complemento)
             .HasColumnType("varchar(100)");
+
+        builder.Navigation(p => p.Blocos)
+            .AutoInclude();
     }
 }

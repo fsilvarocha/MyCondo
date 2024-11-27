@@ -1,4 +1,5 @@
 ﻿using MyCondo.Domain.Entities.Base;
+using MyCondo.Domain.Entities.Bloco;
 using MyCondo.Domain.Utils.Enumeradores;
 
 namespace MyCondo.Domain.Entities.Condominio;
@@ -18,6 +19,7 @@ public class Condominios : BaseEntity
     public virtual string? Logradouro { get; protected set; }
     public virtual string? Numero { get; protected set; }
     public virtual string? Complemento { get; protected set; }
+    public virtual ICollection<Blocos> Blocos { get; protected set; }
 
     public Condominios()
     {
