@@ -1,4 +1,5 @@
 ﻿using MyCondo.Domain.Transfer.DataTransfer.Base;
+using MyCondo.Domain.Transfer.DataTransfer.Bloco.Response;
 using MyCondo.Domain.Utils.Enumeradores;
 
 namespace MyCondo.Domain.Transfer.DataTransfer.Condominio.Response;
@@ -18,4 +19,6 @@ public class CondominiosResponse : BaseResponse
     public virtual string? Logradouro { get; set; }
     public virtual string? Numero { get; set; }
     public virtual string? Complemento { get; set; }
+
+    public virtual ICollection<BlocosResponse> Blocos { get; set; }
 }

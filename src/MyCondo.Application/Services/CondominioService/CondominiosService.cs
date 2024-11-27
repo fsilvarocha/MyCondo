@@ -66,9 +66,7 @@ public class CondominiosService : ICondominiosService
         Condominios existingProdutos = await _condominiosRepository.GetByIdTenanteAsync(pesquisa);
 
         if (existingProdutos == null)
-            return;
-
-        
+            return;        
 
         await _condominiosRepository.DeleteAsync(existingProdutos);
     }
