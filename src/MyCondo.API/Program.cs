@@ -1,4 +1,6 @@
+using HealthChecks.UI.Client;
 using MyCondo.IoC;
+using MyCondo.IoC.HealthCheck;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using System.Reflection;
 
@@ -26,6 +28,8 @@ if (app.Environment.IsDevelopment())
         c.DocExpansion(DocExpansion.None);
     });
 }
+
+app.UseCustomHealthChecks();
 
 app.UseHttpsRedirection();
 

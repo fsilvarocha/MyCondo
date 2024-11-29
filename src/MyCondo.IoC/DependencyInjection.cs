@@ -58,8 +58,22 @@ public static class DependencyInjection
         ConfigureBaseService(services);
         ConfiguraServices(services);
         ConfiguraFLuentValidation(services);
+        ConfigurarHealthCheck(services, configuration);
 
         return services;
+    }
+
+    private static void ConfigurarHealthCheck(IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddHealthChecks()
+            .AddSqlite(configuration.GetConnectionString("DefaultConnection"), name: "Database");
+
+        services.AddHealthChecksUI(c =>
+        {
+            c.SetEvaluationTimeInSeconds(5);
+            c.MaximumHistoryEntriesPerEndpoint(5);
+            c.AddHealthCheckEndpoint("API HealthChecks", "/health");
+        }).AddInMemoryStorage();
     }
 
     private static void ConfigurarAutoMapper(IServiceCollection services)
