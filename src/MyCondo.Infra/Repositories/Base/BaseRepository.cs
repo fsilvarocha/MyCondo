@@ -63,11 +63,15 @@ public class BaseRepository<T> : IBaseRepository<T> where T : class
         }
     }
 
-
-
     public async Task UpdateAsync(T entity)
     {
+        var property = entity.GetType().GetProperty("DataAtualizado");
+
+        if (property != null && property.CanWrite)
+            property.SetValue(entity, DateTime.Now);
+
         _dbSet.Update(entity);
         await _context.SaveChangesAsync();
     }
+
 }

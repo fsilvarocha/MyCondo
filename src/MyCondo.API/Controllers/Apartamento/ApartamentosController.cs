@@ -10,12 +10,12 @@ namespace MyCondo.API.Controllers.Apartamento
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ApartamentoController : ControllerBase
+    public class ApartamentosController : ControllerBase
     {
         private readonly IApartamentosService _apartamentoService;
-        private readonly ILogger<ApartamentoController> _logger;
+        private readonly ILogger<ApartamentosController> _logger;
 
-        public ApartamentoController(IApartamentosService apartamentoService, ILogger<ApartamentoController> logger)
+        public ApartamentosController(IApartamentosService apartamentoService, ILogger<ApartamentosController> logger)
         {
             _apartamentoService = apartamentoService;
             _logger = logger;
@@ -38,7 +38,7 @@ namespace MyCondo.API.Controllers.Apartamento
         /// <param name="Apartamentos"></param>
         /// <returns></returns>
         [HttpPost("criar")]
-        public async Task<ActionResult<CondominiosResponse>> Create(ApartamentosInserirRequest request)
+        public async Task<ActionResult<ApartamentosResponse>> Create(ApartamentosInserirRequest request)
         {
             ApartamentosResponse createdCondominio = await _apartamentoService.AddAsync(request);
             return CreatedAtAction(nameof(GetById), new { id = createdCondominio.Id, createdCondominio.Tenante }, createdCondominio);
