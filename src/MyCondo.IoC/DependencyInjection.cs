@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MyCondo.Application.Services.ApartamentoService;
 using MyCondo.Application.Services.ApartamentoService.Interface;
+using MyCondo.Application.Services.Base;
 using MyCondo.Application.Services.BlocoService;
 using MyCondo.Application.Services.BlocoService.Interface;
 using MyCondo.Application.Services.CondominioService;
@@ -17,9 +18,17 @@ using MyCondo.Domain.Interface.Bloco;
 using MyCondo.Domain.Interface.Condominio;
 using MyCondo.Domain.Interface.Morador;
 using MyCondo.Domain.Transfer.DataTransfer.Apartamento.Profiles;
+using MyCondo.Domain.Transfer.DataTransfer.Apartamento.Request;
+using MyCondo.Domain.Transfer.DataTransfer.Apartamento.Response;
 using MyCondo.Domain.Transfer.DataTransfer.Bloco.Profiles;
+using MyCondo.Domain.Transfer.DataTransfer.Bloco.Request;
+using MyCondo.Domain.Transfer.DataTransfer.Bloco.Response;
 using MyCondo.Domain.Transfer.DataTransfer.Condominio.Profiles;
+using MyCondo.Domain.Transfer.DataTransfer.Condominio.Request;
+using MyCondo.Domain.Transfer.DataTransfer.Condominio.Response;
 using MyCondo.Domain.Transfer.DataTransfer.Morador.Profiles;
+using MyCondo.Domain.Transfer.DataTransfer.Morador.Request;
+using MyCondo.Domain.Transfer.DataTransfer.Morador.Response;
 using MyCondo.Infra.Data;
 using MyCondo.Infra.Mappings.Apartamento.Validator;
 using MyCondo.Infra.Mappings.Bloco.Validator;
@@ -46,6 +55,7 @@ public static class DependencyInjection
 
         ConfigurarAutoMapper(services);
         ConfiguraRepositories(services);
+        ConfigureBaseService(services);
         ConfiguraServices(services);
         ConfiguraFLuentValidation(services);
 
@@ -62,10 +72,19 @@ public static class DependencyInjection
 
     private static void ConfiguraServices(IServiceCollection services)
     {
+        
         services.AddScoped<ICondominiosService, CondominiosService>();
         services.AddScoped<IBlocosService, BlocosService>();
         services.AddScoped<IApartamentosService, ApartamentosService>();
         services.AddScoped<IMoradoresService, MoradoresService>();
+    }
+
+    private static void ConfigureBaseService(IServiceCollection services)
+    {
+        services.AddScoped<IBaseService<MoradoresPesquisaRequest, MoradoresInserirRequest, MoradoresAtualizarRequest, MoradoresExcluirRequest, MoradoresResponse>, MoradoresService>();
+        services.AddScoped<IBaseService<BlocosPesquisaRequest, BlocosInserirRequest, BlocosAtualizarRequest, BlocosExcluirRequest, BlocosResponse>, BlocosService>();
+        services.AddScoped<IBaseService<ApartamentosPesquisaRequest, ApartamentosInserirRequest, ApartamentosAtualizarRequest, ApartamentosExcluirRequest, ApartamentosResponse>, ApartamentosService>();
+        services.AddScoped<IBaseService<CondominiosPesquisaRequest, CondominiosInserirRequest, CondominiosAtualizarRequest, CondominiosExcluirRequest, CondominiosResponse>, CondominiosService>();
     }
 
     private static void ConfiguraRepositories(IServiceCollection services)
