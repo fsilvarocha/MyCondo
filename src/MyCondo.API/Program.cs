@@ -15,6 +15,7 @@ builder.Services.AddSwaggerGen(c =>
     c.IncludeXmlComments(xmlPath);
 });
 
+
 builder.Services.AddInfrastructure(builder.Configuration);
 
 var app = builder.Build();
@@ -28,6 +29,8 @@ if (app.Environment.IsDevelopment())
         c.DocExpansion(DocExpansion.None);
     });
 }
+
+app.UseCors("AllowLocalhost");
 
 app.UseCustomHealthChecks();
 

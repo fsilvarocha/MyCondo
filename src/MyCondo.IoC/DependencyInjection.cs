@@ -59,8 +59,20 @@ public static class DependencyInjection
         ConfiguraServices(services);
         ConfiguraFLuentValidation(services);
         ConfigurarHealthCheck(services, configuration);
+        ConfigurarCors(services, configuration);
 
         return services;
+    }
+
+    private static void ConfigurarCors(IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowLocalhost",
+                policy => policy.WithOrigins(configuration.GetValue<string>("OriginAllow:url"))
+                                .AllowAnyHeader()
+                                .AllowAnyMethod());
+        });
     }
 
     private static void ConfigurarHealthCheck(IServiceCollection services, IConfiguration configuration)
