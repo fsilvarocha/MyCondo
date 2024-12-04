@@ -70,8 +70,9 @@ public static class DependencyInjection
         {
             options.AddPolicy("AllowLocalhost",
                 policy => policy.WithOrigins(configuration.GetValue<string>("OriginAllow:url"))
-                                .AllowAnyHeader()
-                                .AllowAnyMethod());
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod());
         });
     }
 
